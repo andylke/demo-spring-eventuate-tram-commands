@@ -1,4 +1,4 @@
-package com.github.andylke.demo.customer;
+package com.github.andylke.demo.account;
 
 import java.math.BigDecimal;
 
@@ -8,7 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Customer {
+public class Account {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)

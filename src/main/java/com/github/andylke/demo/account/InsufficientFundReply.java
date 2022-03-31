@@ -1,14 +1,14 @@
-package com.github.andylke.demo.customer;
+package com.github.andylke.demo.account;
 
-public class CustomerNotFoundReply {
+public class InsufficientFundReply {
 
   private final ReserveCreditRequest request;
 
-  public CustomerNotFoundReply() {
+  public InsufficientFundReply() {
     this.request = new ReserveCreditRequest();
   }
 
-  public CustomerNotFoundReply(ReserveCreditRequest request) {
+  public InsufficientFundReply(ReserveCreditRequest request) {
     this.request = request;
   }
 

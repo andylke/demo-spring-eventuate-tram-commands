@@ -1,4 +1,4 @@
-package com.github.andylke.demo.customer;
+package com.github.andylke.demo.account;
 
 import javax.transaction.Transactional;
 
@@ -7,19 +7,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CustomerService {
+public class AccountService {
 
-  @Autowired private CustomerRepository repository;
+  @Autowired private AccountRepository repository;
 
   @Autowired private ModelMapper modelMapper;
 
   @Transactional
   public ReserveCreditResponse reserveCredit(ReserveCreditRequest request)
-      throws CustomerNotFoundException, InsufficientFundException {
-    final Customer entity =
+      throws AccountNotFoundException, InsufficientFundException {
+    final Account entity =
         repository
-            .findById(request.getCustomerId())
-            .orElseThrow(() -> new CustomerNotFoundException());
+            .findByCustomerId(request.getCustomerId())
+            .orElseThrow(() -> new AccountNotFoundException());
 
     if (entity.getAvailableAmount().compareTo(request.getAmount()) < 0) {
       throw new InsufficientFundException();
@@ -27,7 +27,7 @@ public class CustomerService {
 
     entity.setAvailableAmount(entity.getAvailableAmount().subtract(request.getAmount()));
     entity.setReservedAmount(entity.getReservedAmount().add(request.getAmount()));
-    final Customer savedEntity = repository.save(entity);
+    final Account savedEntity = repository.save(entity);
 
     final ReserveCreditResponse response =
         modelMapper.map(savedEntity, ReserveCreditResponse.class);

@@ -1,4 +1,4 @@
-package com.github.andylke.demo.customer;
+package com.github.andylke.demo.account;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,15 +14,15 @@ import io.eventuate.tram.spring.optimisticlocking.OptimisticLockingDecoratorConf
 public class ReserveCreditCommandConfiguration {
 
   @Bean
-  public ReserveCreditCommandHandler customerCommandHandler() {
+  public ReserveCreditCommandHandler reserveCreditCommandHandler() {
     return new ReserveCreditCommandHandler();
   }
 
   @Bean
-  public CommandDispatcher customerCommandDispatcher(
+  public CommandDispatcher reserveCreditCommandDispatcher(
       CommandDispatcherFactory commandDispatcherFactory,
-      ReserveCreditCommandHandler customerCommandHandler) {
+      ReserveCreditCommandHandler reserveCreditCommandHandler) {
     return commandDispatcherFactory.make(
-        "CustomerCommandHandler", customerCommandHandler.getCommandHandlers());
+        "ReserveCreditCommandHandler", reserveCreditCommandHandler.getCommandHandlers());
   }
 }

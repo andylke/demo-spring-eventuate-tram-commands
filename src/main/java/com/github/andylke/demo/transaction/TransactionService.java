@@ -11,8 +11,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.github.andylke.demo.customer.ReserveCreditCommand;
-import com.github.andylke.demo.customer.ReserveCreditRequest;
+import com.github.andylke.demo.account.ReserveCreditCommand;
+import com.github.andylke.demo.account.ReserveCreditRequest;
 
 import io.eventuate.tram.commands.producer.CommandProducer;
 import io.eventuate.tram.messaging.common.Message;

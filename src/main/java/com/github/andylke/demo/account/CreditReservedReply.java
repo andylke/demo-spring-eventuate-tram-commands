@@ -1,4 +1,4 @@
-package com.github.andylke.demo.customer;
+package com.github.andylke.demo.account;
 
 public class CreditReservedReply {
 

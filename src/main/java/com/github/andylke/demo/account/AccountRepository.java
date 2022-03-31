@@ -1,4 +1,4 @@
-package com.github.andylke.demo.customer;
+package com.github.andylke.demo.account;
 
 import java.util.Optional;
 
@@ -9,8 +9,8 @@ import org.springframework.data.jpa.repository.Lock;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CustomerRepository extends JpaRepository<Customer, Long> {
+public interface AccountRepository extends JpaRepository<Account, Long> {
 
   @Lock(LockModeType.PESSIMISTIC_READ)
-  Optional<Customer> findByCustomerId(Long customerId);
+  Optional<Account> findByCustomerId(Long customerId);
 }

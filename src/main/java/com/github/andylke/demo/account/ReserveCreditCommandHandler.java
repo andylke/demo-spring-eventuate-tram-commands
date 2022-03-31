@@ -1,4 +1,4 @@
-package com.github.andylke.demo.customer;
+package com.github.andylke.demo.account;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +20,7 @@ public class ReserveCreditCommandHandler {
           .onMessage(ReserveCreditCommand.class, this::addReservedCredit)
           .build();
 
-  @Autowired private CustomerService service;
+  @Autowired private AccountService service;
 
   public CommandHandlers getCommandHandlers() {
     return commandHandlers;
@@ -34,9 +34,9 @@ public class ReserveCreditCommandHandler {
       return CommandHandlerReplyBuilder.withSuccess(
           new CreditReservedReply(service.reserveCredit(command.getRequest())));
 
-    } catch (CustomerNotFoundException e) {
+    } catch (AccountNotFoundException e) {
       return CommandHandlerReplyBuilder.withFailure(
-          new CustomerNotFoundReply(command.getRequest()));
+          new AccountNotFoundReply(command.getRequest()));
 
     } catch (InsufficientFundException e) {
       return CommandHandlerReplyBuilder.withFailure(

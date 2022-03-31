@@ -1,4 +1,4 @@
-package com.github.andylke.demo.customer;
+package com.github.andylke.demo.account;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -7,14 +7,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(path = "/customers")
-public class CustomerRestController {
+@RequestMapping(path = "/accounts")
+public class AccountRestController {
 
-  @Autowired private CustomerService service;
+  @Autowired private AccountService service;
 
-  @PostMapping
+  @PostMapping(path = "/reserve-credit")
   public ReserveCreditResponse reserveCredit(@RequestBody ReserveCreditRequest request)
-      throws CustomerNotFoundException, InsufficientFundException {
+      throws AccountNotFoundException, InsufficientFundException {
     return service.reserveCredit(request);
   }
 }
