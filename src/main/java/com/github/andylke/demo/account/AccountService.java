@@ -14,8 +14,7 @@ public class AccountService {
   @Autowired private ModelMapper modelMapper;
 
   @Transactional
-  public ReserveCreditResponse reserveCredit(ReserveCreditRequest request)
-      throws AccountNotFoundException, InsufficientFundException {
+  public ReserveCreditResponse reserveCredit(ReserveCreditRequest request) {
     final Account entity =
         repository
             .findByCustomerId(request.getCustomerId())

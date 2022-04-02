@@ -12,11 +12,21 @@ public class Account {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long accountId;
+
   private Long customerId;
 
   private BigDecimal availableAmount;
 
   private BigDecimal reservedAmount;
+
+  public Long getAccountId() {
+    return accountId;
+  }
+
+  public void setAccountId(Long accountId) {
+    this.accountId = accountId;
+  }
 
   public Long getCustomerId() {
     return customerId;

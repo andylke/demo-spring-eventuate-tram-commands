@@ -10,11 +10,12 @@ create table transaction (
 );
 
 
-drop table if exists customer;
+drop table if exists account;
 
-create table customer (
+create table account (
+  account_id bigint(20) not null auto_increment,
   customer_id bigint(20) not null,
   available_amount decimal(19,3) not null,
   reserved_amount decimal(19,3) not null,
-  primary key(customer_id)
+  primary key(account_id)
 );

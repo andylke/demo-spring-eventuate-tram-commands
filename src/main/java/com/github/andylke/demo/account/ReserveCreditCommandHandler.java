@@ -31,16 +31,14 @@ public class ReserveCreditCommandHandler {
     LOGGER.info("Received ReserveCreditCommand {}", command);
 
     try {
-      return CommandHandlerReplyBuilder.withSuccess(
-          new CreditReservedReply(service.reserveCredit(command.getRequest())));
+      service.reserveCredit(command.getRequest());
+      return CommandHandlerReplyBuilder.withSuccess();
 
     } catch (AccountNotFoundException e) {
-      return CommandHandlerReplyBuilder.withFailure(
-          new AccountNotFoundReply(command.getRequest()));
+      return CommandHandlerReplyBuilder.withFailure(new AccountNotFoundReply());
 
     } catch (InsufficientFundException e) {
-      return CommandHandlerReplyBuilder.withFailure(
-          new InsufficientFundReply(command.getRequest()));
+      return CommandHandlerReplyBuilder.withFailure(new InsufficientFundReply());
     }
   }
 }
