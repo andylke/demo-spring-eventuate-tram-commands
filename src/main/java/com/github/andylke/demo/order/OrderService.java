@@ -1,4 +1,4 @@
-package com.github.andylke.demo.transaction;
+package com.github.andylke.demo.order;
 
 import java.util.Collections;
 
@@ -19,11 +19,11 @@ import io.eventuate.tram.messaging.common.Message;
 import io.eventuate.tram.messaging.consumer.MessageConsumer;
 
 @Service
-public class TransactionService {
+public class OrderService {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(TransactionService.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(OrderService.class);
 
-  @Autowired private TransactionRepository repository;
+  @Autowired private OrderRepository repository;
 
   @Autowired private ModelMapper modelMapper;
 
@@ -40,17 +40,16 @@ public class TransactionService {
   }
 
   @Transactional
-  public AddTransactionResponse addTransaction(AddTransactionRequest request) {
-    final Transaction entity = modelMapper.map(request, Transaction.class);
+  public AddOrderResponse addOrder(AddOrderRequest request) {
+    final Order entity = modelMapper.map(request, Order.class);
 
-    final Transaction savedEntity = repository.save(entity);
-    final AddTransactionResponse response =
-        modelMapper.map(savedEntity, AddTransactionResponse.class);
+    final Order savedEntity = repository.save(entity);
+    final AddOrderResponse response = modelMapper.map(savedEntity, AddOrderResponse.class);
 
     commandProducer.send(
-        "demo-spring-boot-eventuate-tram-commands.reserve-credit-command",
+        "demo-spring-boot-eventuate-tram-commands.reserve-credit",
         new ReserveCreditCommand(
-            new ReserveCreditRequest(response.getCustomerId(), response.getTransactionAmount())),
+            new ReserveCreditRequest(response.getCustomerId(), response.getOrderAmount())),
         "demo-spring-boot-eventuate-tram-commands.reserve-credit-reply",
         Collections.emptyMap());
 

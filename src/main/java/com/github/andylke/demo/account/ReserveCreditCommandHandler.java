@@ -15,8 +15,7 @@ public class ReserveCreditCommandHandler {
   private static final Logger LOGGER = LoggerFactory.getLogger(ReserveCreditCommandHandler.class);
 
   private final CommandHandlers commandHandlers =
-      CommandHandlersBuilder.fromChannel(
-              "demo-spring-boot-eventuate-tram-commands.reserve-credit-command")
+      CommandHandlersBuilder.fromChannel("demo-spring-boot-eventuate-tram-commands.reserve-credit")
           .onMessage(ReserveCreditCommand.class, this::addReservedCredit)
           .build();
 

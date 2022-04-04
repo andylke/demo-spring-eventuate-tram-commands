@@ -1,18 +1,18 @@
 use eventuate;
 
-drop table if exists transaction;
+drop table if exists customer_order;
 
-create table transaction (
-  transaction_id bigint(20) not null auto_increment,
+create table customer_order (
+  order_id bigint(20) not null auto_increment,
   customer_id bigint(20) not null,
-  transaction_amount decimal(19,3) not null,
-  primary key(transaction_id)
+  order_amount decimal(19,3) not null,
+  primary key(order_id)
 );
 
 
-drop table if exists account;
+drop table if exists customer_account;
 
-create table account (
+create table customer_account (
   account_id bigint(20) not null auto_increment,
   customer_id bigint(20) not null,
   available_amount decimal(19,3) not null,
